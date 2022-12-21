@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
-import {ApiTask} from "../../types";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {fetchTaskPost, fetchTasks} from "../../container/Tasks/tasksThunks";
+import {selectCreateLoad} from "../../container/Tasks/tasksSlice";
+import ButtonSpinner from "../Spinner/ButtonSpinner";
+import {ApiTask} from "../../types";
 
 const TaskForm = () => {
   const dispatch = useAppDispatch();
+  const createLoad = useAppSelector(selectCreateLoad);
 
   const [task, setTask] = useState<ApiTask>({
     title: '',
@@ -17,20 +20,24 @@ const TaskForm = () => {
 
   const onFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await dispatch(fetchTaskPost(task));
-    await dispatch(fetchTasks());
-    setTask({
-      title: '',
-      status: false,
-    });
+    if (task.title.length > 0) {
+      await dispatch(fetchTaskPost(task));
+      await dispatch(fetchTasks());
+      setTask({
+        title: '',
+        status: false,
+      });
+    } else {
+      alert('Заполните поле!')
+    }
   };
 
   return (
     <div className="d-flex justify-content-center">
-      <form className="m-2 p-1 w-50"
+      <form className="m-2 p-1 w-75"
             onSubmit={onFormSubmit}>
         <div className="form-group">
-          <label className="fs-3" htmlFor="task">Add new task:</label>
+          <label className="fs-3" htmlFor="task">Create new task:</label>
           <input
             placeholder="Just do it!"
             type="text"
@@ -38,8 +45,12 @@ const TaskForm = () => {
             value={task.title}
             onChange={onFormChange}
           />
-
-          <button className="btn btn btn-primary mt-3" type="submit">Add</button>
+          <button
+            className="btn btn btn-primary mt-3"
+            disabled={createLoad}
+            type="submit">
+            {createLoad ? <ButtonSpinner/> : 'Create'}
+          </button>
         </div>
       </form>
     </div>
