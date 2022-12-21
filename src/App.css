@@ -1,3 +1,11 @@
+body {
+  background: url(https://wallpapershome.ru/images/wallpapers/pismennie-instrumenti-1280x720-stol-karandash-bloknot-15266.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .App {
   text-align: center;
 }

@@ -14,7 +14,9 @@ const Tasks = () => {
     dispatch(fetchTasks())
   }, [dispatch]);
 
-  let content: ReactElement[] | ReactElement= (<p>'There are no tasks yet!'</p>);
+  let content: ReactElement[] | ReactElement = (
+    <p className="fs-3 fw-bold">There are no tasks yet!</p>
+  );
 
   if (allTasks.length > 0) {
     content = (

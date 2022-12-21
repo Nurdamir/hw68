@@ -30,7 +30,6 @@ const TaskItem: React.FC<PropsTaskItem> = ({id, title, status}) => {
     await dispatch(fetchTasks());
   };
 
-
   return (
     <div className="card w-75 m-1 p-2">
       <div className="d-flex justify-content-between align-items-center">

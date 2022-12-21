@@ -37,16 +37,16 @@ const TaskForm = () => {
       <form className="m-2 p-1 w-75"
             onSubmit={onFormSubmit}>
         <div className="form-group">
-          <label className="fs-3" htmlFor="task">Create new task:</label>
+          <label className="fs-2 bg-light rounded w-100 mb-3 fw-bold" htmlFor="task">Create new task:</label>
           <input
             placeholder="Just do it!"
             type="text"
-            className="form-control"
+            className="form-control ps-4 fs-3"
             value={task.title}
             onChange={onFormChange}
           />
           <button
-            className="btn btn btn-primary mt-3"
+            className="btn btn btn-primary mt-2 fs-3 px-3"
             disabled={createLoad}
             type="submit">
             {createLoad ? <ButtonSpinner/> : 'Create'}

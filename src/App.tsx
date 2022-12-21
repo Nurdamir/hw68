@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import TaskForm from "./components/TaskForm/TaskForm";
 import Tasks from "./container/Tasks/Tasks";
+import './App.css';
 
 function App() {
   return (
